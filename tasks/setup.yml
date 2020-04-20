@@ -1,0 +1,32 @@
+- name: install apache2
+  apt:
+    pkg:
+      - apache2
+      - php
+      - libapache2-mod-php
+      - php-cli
+      - php-common
+      - php-mbstring
+      - php-intl
+      - php-gd
+      - php-xml
+      - php-mysql
+      - php-zip
+      - php-curl
+      - php-xmlrpc
+  tags:
+    - setup
+- name: enable rewrite module
+  command: a2enmod rewrite
+  tags:
+    - setup
+- name: word press directory
+  file:
+    path: /var/www/html/wordpress
+    state: directory
+    recurse: yes
+    mode: '755'
+    owner: www-data
+    group: www-data
+  tags:
+    - setup

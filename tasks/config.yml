@@ -1,0 +1,18 @@
+- name: download and extract wp files
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: /var/www/html/
+    remote_src: yes
+  tags:
+    - configure
+- name: copy the wpconfig 
+  template:
+    src: wp-config.php.j2
+    dest: "{{wpapp.config_dir}}/wp-config.php"
+    owner: www-data
+    group: www-data
+    mode: 0600
+  tags:
+    - configure
+  notify:
+    - restart apache2

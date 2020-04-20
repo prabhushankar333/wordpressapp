@@ -1,0 +1,2 @@
+wpapp:
+  config_dir: /var/www/html/wordpress
